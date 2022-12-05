@@ -50,11 +50,34 @@ SET default_table_access_method = heap;
 CREATE TABLE public.additinfo (
     name character varying(40) NOT NULL,
     has_info boolean NOT NULL,
-    location text
+    location text,
+    info_id integer NOT NULL
 );
 
 
 ALTER TABLE public.additinfo OWNER TO freecodecamp;
+
+--
+-- Name: additinfo_info_id_seq; Type: SEQUENCE; Schema: public; Owner: freecodecamp
+--
+
+CREATE SEQUENCE public.additinfo_info_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.additinfo_info_id_seq OWNER TO freecodecamp;
+
+--
+-- Name: additinfo_info_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: freecodecamp
+--
+
+ALTER SEQUENCE public.additinfo_info_id_seq OWNED BY public.additinfo.info_id;
+
 
 --
 -- Name: galaxy; Type: TABLE; Schema: public; Owner: freecodecamp
@@ -207,6 +230,13 @@ ALTER SEQUENCE public.star_star_id_seq OWNED BY public.star.star_id;
 
 
 --
+-- Name: additinfo info_id; Type: DEFAULT; Schema: public; Owner: freecodecamp
+--
+
+ALTER TABLE ONLY public.additinfo ALTER COLUMN info_id SET DEFAULT nextval('public.additinfo_info_id_seq'::regclass);
+
+
+--
 -- Name: galaxy galaxy_id; Type: DEFAULT; Schema: public; Owner: freecodecamp
 --
 
@@ -244,6 +274,12 @@ ALTER TABLE ONLY public.star ALTER COLUMN star_id SET DEFAULT nextval('public.st
 -- Data for Name: galaxy; Type: TABLE DATA; Schema: public; Owner: freecodecamp
 --
 
+INSERT INTO public.galaxy VALUES (1, 'Milky Way', 13610, 'barred spiral', 26670);
+INSERT INTO public.galaxy VALUES (2, 'Andromeda', 10010, 'barred spiral', 2537000);
+INSERT INTO public.galaxy VALUES (3, 'Antennae', 250, 'interacting', 65000000);
+INSERT INTO public.galaxy VALUES (4, 'Backward', 500, 'spiral', 111000000);
+INSERT INTO public.galaxy VALUES (5, 'Blackeye', 13280, 'spiral', 24010000);
+INSERT INTO public.galaxy VALUES (6, 'Bodes', 13310, 'grand design spiral', 11740000);
 
 
 --
@@ -262,13 +298,26 @@ ALTER TABLE ONLY public.star ALTER COLUMN star_id SET DEFAULT nextval('public.st
 -- Data for Name: star; Type: TABLE DATA; Schema: public; Owner: freecodecamp
 --
 
+INSERT INTO public.star VALUES (1, 'a Centauri C', 4850, 'red dwarf', 1);
+INSERT INTO public.star VALUES (2, 'a Centauri A', 5300, 'Yellow Main', 1);
+INSERT INTO public.star VALUES (3, 'a Centauri B', 5400, 'Orange Main', 1);
+INSERT INTO public.star VALUES (4, 'Sun', 4600, 'spiral', 1);
+INSERT INTO public.star VALUES (5, 'Barnards Star', 8500, 'red dwarf', 1);
+INSERT INTO public.star VALUES (6, 'Tau Ceti', 8200, 'yellow Main', 1);
+
+
+--
+-- Name: additinfo_info_id_seq; Type: SEQUENCE SET; Schema: public; Owner: freecodecamp
+--
+
+SELECT pg_catalog.setval('public.additinfo_info_id_seq', 1, false);
 
 
 --
 -- Name: galaxy_galaxy_id_seq; Type: SEQUENCE SET; Schema: public; Owner: freecodecamp
 --
 
-SELECT pg_catalog.setval('public.galaxy_galaxy_id_seq', 1, false);
+SELECT pg_catalog.setval('public.galaxy_galaxy_id_seq', 6, true);
 
 
 --
@@ -289,7 +338,7 @@ SELECT pg_catalog.setval('public.planet_planet_id_seq', 1, false);
 -- Name: star_star_id_seq; Type: SEQUENCE SET; Schema: public; Owner: freecodecamp
 --
 
-SELECT pg_catalog.setval('public.star_star_id_seq', 1, false);
+SELECT pg_catalog.setval('public.star_star_id_seq', 6, true);
 
 
 --
@@ -298,6 +347,14 @@ SELECT pg_catalog.setval('public.star_star_id_seq', 1, false);
 
 ALTER TABLE ONLY public.additinfo
     ADD CONSTRAINT additinfo_name_key UNIQUE (name);
+
+
+--
+-- Name: additinfo additinfo_pkey; Type: CONSTRAINT; Schema: public; Owner: freecodecamp
+--
+
+ALTER TABLE ONLY public.additinfo
+    ADD CONSTRAINT additinfo_pkey PRIMARY KEY (info_id);
 
 
 --
