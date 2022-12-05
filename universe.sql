@@ -44,6 +44,19 @@ SET default_tablespace = '';
 SET default_table_access_method = heap;
 
 --
+-- Name: additinfo; Type: TABLE; Schema: public; Owner: freecodecamp
+--
+
+CREATE TABLE public.additinfo (
+    name character varying(40) NOT NULL,
+    has_info boolean NOT NULL,
+    location text
+);
+
+
+ALTER TABLE public.additinfo OWNER TO freecodecamp;
+
+--
 -- Name: galaxy; Type: TABLE; Schema: public; Owner: freecodecamp
 --
 
@@ -222,6 +235,12 @@ ALTER TABLE ONLY public.star ALTER COLUMN star_id SET DEFAULT nextval('public.st
 
 
 --
+-- Data for Name: additinfo; Type: TABLE DATA; Schema: public; Owner: freecodecamp
+--
+
+
+
+--
 -- Data for Name: galaxy; Type: TABLE DATA; Schema: public; Owner: freecodecamp
 --
 
@@ -271,6 +290,14 @@ SELECT pg_catalog.setval('public.planet_planet_id_seq', 1, false);
 --
 
 SELECT pg_catalog.setval('public.star_star_id_seq', 1, false);
+
+
+--
+-- Name: additinfo additinfo_name_key; Type: CONSTRAINT; Schema: public; Owner: freecodecamp
+--
+
+ALTER TABLE ONLY public.additinfo
+    ADD CONSTRAINT additinfo_name_key UNIQUE (name);
 
 
 --
@@ -364,3 +391,4 @@ ALTER TABLE ONLY public.planet
 --
 -- PostgreSQL database dump complete
 --
+
