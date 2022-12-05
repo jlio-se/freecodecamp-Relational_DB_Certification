@@ -292,6 +292,18 @@ INSERT INTO public.galaxy VALUES (6, 'Bodes', 13310, 'grand design spiral', 1174
 -- Data for Name: planet; Type: TABLE DATA; Schema: public; Owner: freecodecamp
 --
 
+INSERT INTO public.planet VALUES (1, 'Mercury', 4503, false, 'Rock', 4);
+INSERT INTO public.planet VALUES (2, 'Venus', 4503, false, 'Rock', 4);
+INSERT INTO public.planet VALUES (3, 'Earth', 4503, true, 'Rock', 4);
+INSERT INTO public.planet VALUES (4, 'Mars', 4503, false, 'Rock', 4);
+INSERT INTO public.planet VALUES (5, 'Jupiter', 4503, false, 'Gas', 4);
+INSERT INTO public.planet VALUES (6, 'Saturn', 4503, false, 'Gas', 4);
+INSERT INTO public.planet VALUES (7, 'Uranus', 4503, false, 'Gas', 4);
+INSERT INTO public.planet VALUES (8, 'Neptune', 4503, false, 'Gas', 4);
+INSERT INTO public.planet VALUES (9, 'Pluto', 4503, false, 'Dwarf', 4);
+INSERT INTO public.planet VALUES (10, 'A Centauri C Planet 1', 4503, false, 'Unknown', 1);
+INSERT INTO public.planet VALUES (11, 'A Centauri C Planet 2', 4503, false, 'Unknown', 1);
+INSERT INTO public.planet VALUES (12, 'Tau Ceti e', 8000, false, 'Exoplanet', 6);
 
 
 --
@@ -331,7 +343,7 @@ SELECT pg_catalog.setval('public.moon_moon_id_seq', 1, false);
 -- Name: planet_planet_id_seq; Type: SEQUENCE SET; Schema: public; Owner: freecodecamp
 --
 
-SELECT pg_catalog.setval('public.planet_planet_id_seq', 1, false);
+SELECT pg_catalog.setval('public.planet_planet_id_seq', 12, true);
 
 
 --
