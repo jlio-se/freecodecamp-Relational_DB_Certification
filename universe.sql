@@ -51,7 +51,7 @@ CREATE TABLE public.additinfo (
     name character varying(40) NOT NULL,
     has_info boolean NOT NULL,
     location text,
-    info_id integer NOT NULL
+    additinfo_id integer NOT NULL
 );
 
 
@@ -76,7 +76,7 @@ ALTER TABLE public.additinfo_info_id_seq OWNER TO freecodecamp;
 -- Name: additinfo_info_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: freecodecamp
 --
 
-ALTER SEQUENCE public.additinfo_info_id_seq OWNED BY public.additinfo.info_id;
+ALTER SEQUENCE public.additinfo_info_id_seq OWNED BY public.additinfo.additinfo_id;
 
 
 --
@@ -230,10 +230,10 @@ ALTER SEQUENCE public.star_star_id_seq OWNED BY public.star.star_id;
 
 
 --
--- Name: additinfo info_id; Type: DEFAULT; Schema: public; Owner: freecodecamp
+-- Name: additinfo additinfo_id; Type: DEFAULT; Schema: public; Owner: freecodecamp
 --
 
-ALTER TABLE ONLY public.additinfo ALTER COLUMN info_id SET DEFAULT nextval('public.additinfo_info_id_seq'::regclass);
+ALTER TABLE ONLY public.additinfo ALTER COLUMN additinfo_id SET DEFAULT nextval('public.additinfo_info_id_seq'::regclass);
 
 
 --
@@ -268,6 +268,9 @@ ALTER TABLE ONLY public.star ALTER COLUMN star_id SET DEFAULT nextval('public.st
 -- Data for Name: additinfo; Type: TABLE DATA; Schema: public; Owner: freecodecamp
 --
 
+INSERT INTO public.additinfo VALUES ('info1', false, 'No', 1);
+INSERT INTO public.additinfo VALUES ('info2', false, 'No', 2);
+INSERT INTO public.additinfo VALUES ('info3', false, 'No', 3);
 
 
 --
@@ -322,7 +325,7 @@ INSERT INTO public.star VALUES (6, 'Tau Ceti', 8200, 'yellow Main', 1);
 -- Name: additinfo_info_id_seq; Type: SEQUENCE SET; Schema: public; Owner: freecodecamp
 --
 
-SELECT pg_catalog.setval('public.additinfo_info_id_seq', 1, false);
+SELECT pg_catalog.setval('public.additinfo_info_id_seq', 3, true);
 
 
 --
@@ -366,7 +369,7 @@ ALTER TABLE ONLY public.additinfo
 --
 
 ALTER TABLE ONLY public.additinfo
-    ADD CONSTRAINT additinfo_pkey PRIMARY KEY (info_id);
+    ADD CONSTRAINT additinfo_pkey PRIMARY KEY (additinfo_id);
 
 
 --
