@@ -289,6 +289,27 @@ INSERT INTO public.galaxy VALUES (6, 'Bodes', 13310, 'grand design spiral', 1174
 -- Data for Name: moon; Type: TABLE DATA; Schema: public; Owner: freecodecamp
 --
 
+INSERT INTO public.moon VALUES (1, 'Our Moon', 384400, 'fifth largest in system', 3, true);
+INSERT INTO public.moon VALUES (2, 'Phobos', 6000, 'Greek God Phobos', 4, false);
+INSERT INTO public.moon VALUES (3, 'Deimos', 23460, 'Phobos Twin Bro', 4, false);
+INSERT INTO public.moon VALUES (4, 'Metis', 128000, 'inner moon', 5, false);
+INSERT INTO public.moon VALUES (5, 'Adrastea', 128980, 'inner moon', 5, false);
+INSERT INTO public.moon VALUES (6, 'Amalthea', 181300, 'inner moon', 5, false);
+INSERT INTO public.moon VALUES (7, 'Thebe', 221900, 'inner moon', 5, false);
+INSERT INTO public.moon VALUES (8, 'Io', 422000, 'Galilean moon', 5, false);
+INSERT INTO public.moon VALUES (9, 'Europa', 671000, 'Galilean moon', 5, false);
+INSERT INTO public.moon VALUES (10, 'Ganymede', 1070000, 'Galilean moon', 5, false);
+INSERT INTO public.moon VALUES (11, 'Callisto', 1883000, 'Galilean moon', 5, false);
+INSERT INTO public.moon VALUES (12, 'Mimas', 185520, 'Discovered by Herschel in 1789', 6, false);
+INSERT INTO public.moon VALUES (13, 'Enceladus', 238020, 'Discovered by Herschel in 1789', 6, false);
+INSERT INTO public.moon VALUES (14, 'Tethys', 294660, 'Discovered by Cassini in 1684', 6, false);
+INSERT INTO public.moon VALUES (15, 'Dione', 377400, 'Discovered by Cassini in 1684', 6, false);
+INSERT INTO public.moon VALUES (16, 'Rhea', 527040, 'Discovered by Cassini in 1672', 6, false);
+INSERT INTO public.moon VALUES (17, 'Titan', 1221850, 'Discovered by Huygens in 1655', 6, false);
+INSERT INTO public.moon VALUES (18, 'Cordelia', 49800, 'Discovered by Voyager 2 in 1986', 7, false);
+INSERT INTO public.moon VALUES (19, 'Ophelia', 53800, 'Discovered by Voyager 2 in 1986', 7, false);
+INSERT INTO public.moon VALUES (20, 'Bianca', 59200, 'Discovered by Voyager 2 in 1986', 7, false);
+INSERT INTO public.moon VALUES (21, 'Cressida', 61800, 'Discovered by Voyager 2 in 1986', 7, false);
 
 
 --
@@ -339,7 +360,7 @@ SELECT pg_catalog.setval('public.galaxy_galaxy_id_seq', 6, true);
 -- Name: moon_moon_id_seq; Type: SEQUENCE SET; Schema: public; Owner: freecodecamp
 --
 
-SELECT pg_catalog.setval('public.moon_moon_id_seq', 1, false);
+SELECT pg_catalog.setval('public.moon_moon_id_seq', 21, true);
 
 
 --
