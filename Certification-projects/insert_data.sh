@@ -16,30 +16,41 @@ do
   if [[ $WINNER != winner ]] && [[ $OPPONENT != opponent ]]
   then
 
-  #get team_id parsing from both winner and opponent
-  TEAM_ID=$($PSQL "SELECT team_id FROM teams WHERE name='$WINNER'")
-  TEAM_ID1=$($PSQL "SELECT team_id FROM teams WHERE name='$OPPONENT'")
-    #if not found based on winner column
-    if [[ -z $TEAM_ID ]]
+  #get winner_id and opponent_id from teams(team_id)
+  WINNER_ID=$($PSQL "SELECT team_id FROM teams WHERE name='$WINNER'")
+  OPPONENT_ID=$($PSQL "SELECT team_id FROM teams WHERE name='$OPPONENT'")
+    
+    #if not found winner_id
+    if [[ -z $WINNER_ID ]]
     then
-    # add team using winner name
-    INSERT_TEAM_RESULT=$($PSQL "INSERT INTO teams(name) VALUES('$WINNER')")
-      if [[ $INSERT_TEAM_RESULT == "INSERT 0 1" ]]
+    # add team using winner team name
+    INSERT_WINNER_RESULT=$($PSQL "INSERT INTO teams(name) VALUES('$WINNER')")
+      if [[ $INSERT_WINNER_RESULT == "INSERT 0 1" ]]
       then echo Inserted into teams, $WINNER
       fi
     fi
+    #get new winner_id
+    WINNER_ID=$($PSQL "SELECT team_id FROM teams WHERE name='$WINNER'")
 
-    #if not found based on opponent column
-    if [[ -z $TEAM_ID1 ]]
+    #if not found opponent_id
+    if [[ -z $OPPONENT_ID ]]
     then
     # add team using opponent name
-    INSERT_TEAM_RESULT1=$($PSQL "INSERT INTO teams(name) VALUES('$OPPONENT')")
-      if [[ $INSERT_TEAM_RESULT1 == "INSERT 0 1" ]]
+    INSERT_OPPONENT_RESULT=$($PSQL "INSERT INTO teams(name) VALUES('$OPPONENT')")
+      if [[ $INSERT_OPPONENT_RESULT == "INSERT 0 1" ]]
       then echo Inserted into teams, $OPPONENT
       fi
 
     fi
-    #get new team_id
-  
+    #get new opponent_id
+    OPPONENT_ID=$($PSQL "SELECT team_id FROM teams WHERE name='$OPPONENT'")
+
+
+    #insert games info
+    INSERT_GAME_RESULT=$($PSQL "INSERT INTO games (year, round, winner_id, opponent_id, winner_goals, opponent_goals) VALUES ($YEAR, '$ROUND', $WINNER_ID, $OPPONENT_ID, $WINNER_GOALS, $OPPONENT_GOALS)")
+      if [[ $INSERT_GAME_RESULT == "INSERT 0 1" ]]
+      then
+        echo Inserted into games, $YEAR $ROUND round, winner: $WINNER VS opponent: $OPPONENT, result $WINNER_GOALS:$OPPONENT_GOALS
+      fi
   fi
 done
